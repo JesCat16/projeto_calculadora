@@ -19,7 +19,9 @@ class Test_Integracao(unittest.TestCase):
         self.assertEqual(resultado_final, 10)
         self.assertEqual(len(calc.historico), 3)
 
-    #teste de interface entre métodos
+    """
+    teste de interface entre métodos
+    """
     def test_integracao_historico_resultado(self):
         calc = Calculadora()
         calc.potencia(2,3)
