@@ -2,7 +2,9 @@ import unittest
 from src.calculadora import Calculadora
 
 class Test_Integracao(unittest.TestCase):
-    # teste de operação sequencial
+    """
+    teste de operação sequencial
+    """
     def test_operacoes_sequenciais(self):
         calc = Calculadora()
         calc.somar(2,3)
