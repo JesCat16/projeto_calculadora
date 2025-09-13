@@ -2,10 +2,11 @@ import unittest
 from src.calculadora import Calculadora
 
 class Test_Integracao(unittest.TestCase):
-    """
-    teste de operação sequencial
-    """
+    
     def test_operacoes_sequenciais(self):
+        """
+        teste de operação sequencial
+        """
         calc = Calculadora()
         calc.somar(2,3)
         resultado1 = calc.obter_ultimo_resultado()
@@ -19,10 +20,11 @@ class Test_Integracao(unittest.TestCase):
         self.assertEqual(resultado_final, 10)
         self.assertEqual(len(calc.historico), 3)
 
-    """
-    teste de interface entre métodos
-    """
+    
     def test_integracao_historico_resultado(self):
+        """
+        teste de interface entre métodos
+        """
         calc = Calculadora()
         calc.potencia(2,3)
         calc.somar(calc.obter_ultimo_resultado(), 2)
