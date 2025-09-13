@@ -59,5 +59,9 @@ class TesteUnitarioCalcula(unittest.TestCase):
         with self.assertRaises(TypeError) :
             self.calc.dividir(5, True) # Boolean no lugar de numero na divisão
 
-# if __name__ == '__main__':
-#   unittest.main()
+    def test_consistencia_historico ( self ) :
+        self.calc.somar(2, 3)
+        self.calc.multiplicar(4, 5)
+        self.assertEqual(len(self.calc.historico), 2)
+        self.assertIn("2 + 3 = 5", self.calc.historico )
+        self.assertIn("4 * 5 = 20", self.calc.historico )
