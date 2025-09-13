@@ -58,3 +58,6 @@ class TesteUnitarioCalcula(unittest.TestCase):
             self.calc.dividir(10, None) # None no lugar de numero na divisão
         with self.assertRaises(TypeError) :
             self.calc.dividir(5, True) # Boolean no lugar de numero na divisão
+
+# if __name__ == '__main__':
+#   unittest.main()
