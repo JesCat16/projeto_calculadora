@@ -68,51 +68,84 @@ class TesteUnitarioCalcula(unittest.TestCase):
             self.calc.somar(5, True)  # Boolean no lugar de numero na soma
 
     def test_tipagem_invalida_subtracao_string(self):
+        """
+        String no lugar de numero na subtração
+        """
         with self.assertRaises(TypeError):
-            self.calc.subtrair("5", 3)  # String no lugar de numero na subtração
+            self.calc.subtrair("5", 3)   
 
     def test_tipagem_invalida_subtracao_none(self):
+        """
+        None no lugar de numero na subtração
+        """
         with self.assertRaises(TypeError):
-            self.calc.subtrair(5, None)  # None no lugar de numero na subtração
+            self.calc.subtrair(5, None)  
 
     def test_tipagem_invalida_subtracao_boolean(self):
+        """
+        Boolean no lugar de numero na subtração
+        """
         with self.assertRaises(TypeError):
-            self.calc.subtrair(5, True)  # Boolean no lugar de numero na subtração
+            self.calc.subtrair(5, True)   
 
     def test_tipagem_invalida_multiplicar_string(self):
+        """
+        String no lugar de numero na multiplicação
+        """
         with self.assertRaises(TypeError):
-            self.calc.multiplicar("5", 3)  # String no lugar de numero na multiplicação
+            self.calc.multiplicar("5", 3)  
 
     def test_tipagem_invalida_multiplicar_none(self):
+        """
+        None no lugar de numero na multiplicação
+        """
         with self.assertRaises(TypeError):
-            self.calc.multiplicar(5, None)  # None no lugar de numero na multiplicação
+            self.calc.multiplicar(5, None) 
 
     def test_tipagem_invalida_multiplicar_boolean(self):
+        """
+        Boolean no lugar de numero na multiplicação
+        """
         with self.assertRaises(TypeError):
-            self.calc.multiplicar(
-                5, True
-            )  # Boolean no lugar de numero na multiplicação
+            self.calc.multiplicar(5, True)  
 
     def test_tipagem_invalida_dividir_string(self):
+        """
+        String no lugar de numero na divisão
+        """
         with self.assertRaises(TypeError):
-            self.calc.dividir("5", 3)  # String no lugar de numero na divisão
+            self.calc.dividir("5", 3) 
 
     def test_tipagem_invalida_dividir_none(self):
+        """
+        None no lugar de numero na divisão
+        """
         with self.assertRaises(TypeError):
-            self.calc.dividir(10, None)  # None no lugar de numero na divisão
+            self.calc.dividir(10, None)  
 
     def test_tipagem_invalida_dividir_boolean(self):
+        """
+        Boolean no lugar de numero na divisão
+        """
         with self.assertRaises(TypeError):
-            self.calc.dividir(5, True)  # Boolean no lugar de numero na divisão
+            self.calc.dividir(5, True)  # 
 
     def test_consistencia_historico_1(self):
+        """
+        Verifica a consistência dos dados depois de uma operação
+        """
         self.calc.subtrair(3, 2)
         self.assertEqual(len(self.calc.historico), 1)
         self.assertIn("3 - 2 = 1", self.calc.historico)
 
     def test_consistencia_historico_2(self):
+        """
+        Verifica a consistência dos dados depois de duas operações
+        """
         self.calc.somar(2, 3)
         self.calc.multiplicar(4, 5)
         self.assertEqual(len(self.calc.historico), 2)
         self.assertIn("2 + 3 = 5", self.calc.historico)
         self.assertIn("4 * 5 = 20", self.calc.historico)
+    
+    
