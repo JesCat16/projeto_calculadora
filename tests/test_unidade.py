@@ -148,4 +148,142 @@ class TesteUnitarioCalcula(unittest.TestCase):
         self.assertIn("2 + 3 = 5", self.calc.historico)
         self.assertIn("4 * 5 = 20", self.calc.historico)
     
+    def test_inicialização(self):
+        """
+        Garante que a inicialização foi feita corretamente
+        """
+        calc = Calculadora()
+        self.assertEqual(calc.resultado, 0)
+        self.assertEqual(len(calc.historico), 0)
+
+    def test_modificacao_historico_soma(self):
+        """
+        Valida a inserção de informações e exclusão de informação no histórico quando
+        realizada a soma
+        """
+        calc = Calculadora()
+        calc.somar(1 , 1)
+        self.assertEqual(len(calc.historico), 1)
+        calc.limpar_historico()
+        self.assertEqual(len(calc.historico), 0)
+
+    def test_modificacao_historico_subtracao(self):
+        """
+        Valida a inserção de informações e exclusão de informação no histórico quando
+        realizada a subtração
+        """
+        calc = Calculadora()
+        calc.subtrair(1 , 1)
+        self.assertEqual(len(calc.historico), 1)
+        calc.limpar_historico()
+        self.assertEqual(len(calc.historico), 0)
+
+    def test_modificacao_historico_divisao(self):
+        """
+        Valida a inserção de informações e exclusão de informação no histórico quando
+        realizada a divisão
+        """
+        calc = Calculadora()
+        calc.dividir(1 , 1)
+        self.assertEqual(len(calc.historico), 1)
+        calc.limpar_historico()
+        self.assertEqual(len(calc.historico), 0)
     
+    def test_modificacao_historico_multiplicacao(self):
+        """
+        Valida a inserção de informações e exclusão de informação no histórico quando
+        realizada a multiplicação
+        """
+        calc = Calculadora()
+        calc.multiplicar(1 , 1)
+        self.assertEqual(len(calc.historico), 1)
+        calc.limpar_historico()
+        self.assertEqual(len(calc.historico), 0)
+    
+    def test_modificacao_historico_potencializacao(self):
+        """
+        Valida a inserção de informações e exclusão de informação no histórico quando
+        realizada a potencialização
+        """
+        calc = Calculadora()
+        calc.potencia(1 , 1)
+        self.assertEqual(len(calc.historico), 1)
+        calc.limpar_historico()
+        self.assertEqual(len(calc.historico), 0)
+    
+    def test_limite_inferior(self):
+        """
+        Teste de comportamento com valores minimos
+        """
+        calc = Calculadora()
+        # Teste com zero
+        resultado = calc.somar(0,5)
+        self.assertEqual(resultado, 5)
+        # Teste com números negativos muito pequenos
+        resultado = calc.multiplicar(-1e-10 , 2)
+        self.assertEqual(resultado , -2e-10)
+
+    def test_divisao_por_zero(self):
+        """
+        Valida a impossibilidade de dividir por 0
+        """
+        calc = Calculadora()
+        with self.assertRaises(ValueError):
+            calc.dividir(10,0)
+
+    def test_mensagem_erro_soma(self):
+        """
+        Valida mensagem de erro da soma
+        """
+        calc = Calculadora()
+        try:
+            calc.somar(5, "1")
+        except ValueError as e:
+            self.assertEqual(str(e), "Argumentos devem ser numeros")
+        
+    def test_mensagem_erro_subtracao(self):
+        """
+        Valida mensagem de erro da subtração
+        """
+        calc = Calculadora()
+        try:
+            calc.subtrair(5, "1")
+        except ValueError as e:
+            self.assertEqual(str(e), "Argumentos devem ser numeros")
+
+    def test_mensagem_erro_multiplicacao(self):
+        """
+        Valida mensagem de erro da multiplicação
+        """
+        calc = Calculadora()
+        try:
+            calc.multiplicar(5, "1")
+        except ValueError as e:
+            self.assertEqual(str(e), "Argumentos devem ser numeros")
+
+    def test_mensagem_erro_divisao(self):
+        """
+        Valida mensagem de erro da divisão
+        """
+        calc = Calculadora()
+        try:
+            calc.dividir(5, "1")
+        except ValueError as e:
+            self.assertEqual(str(e), "Argumentos devem ser numeros")
+        
+    def test_mensagem_erro_potencia(self):
+        """
+        Valida mensagem de erro da potência
+        """
+        calc = Calculadora()
+        try:
+            calc.potencia(5, "1")
+        except ValueError as e:
+            self.assertEqual(str(e), "Argumentos devem ser numeros")
+        
+    def test_mensagem_erro_div0(self):
+        calc = Calculadora()
+        try:
+            calc.dividir(5 ,0)
+        except ValueError as e:
+            self.assertEqual(str(e), "Divisao por zero nao permitida")
